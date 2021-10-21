@@ -12,18 +12,4 @@ def test():
     print('test')
     return 'test'
 
-
-@app.before_request
-def test_before_request():
-    print('before request...')
-
-
-# app.run()
-
-
-class Test:
-    pass
-
-t = Test()
-t.a = []
-print(t.a)
+app.run()
