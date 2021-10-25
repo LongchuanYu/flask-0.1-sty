@@ -75,7 +75,8 @@ class _RequestContext(object):
     `_request_ctx_stack` and removed at the end of it.  It will create the
     URL adapter and request object for the WSGI environment provided.
     """
-    # ??? 按道理实例化_RequestContext需要传入app和environ，但是却只传入environ,为什么？ -
+    # ??? 按道理实例化_RequestContext需要传入app和environ，但是却只传入environ,为什么？
+    #   Flask类调用_RequestContext，传入了self和environ，其中self就是app。。。
     def __init__(self, app, environ):
         self.app = app
         self.url_adapter = app.url_map.bind_to_environ(environ)
@@ -636,8 +637,9 @@ class Flask(object):
                                a list of headers and an optional
                                exception context to start the response
         """
+        print(environ)
         with self.request_context(environ):
-            # ??? preprocess_request会先去处理@app.before_request装饰的函数
+            # ??? preprocess_request 会先去处理@app.before_request装饰的函数
             rv = self.preprocess_request()
             if rv is None:
                 rv = self.dispatch_request()
@@ -670,9 +672,9 @@ class Flask(object):
     def __call__(self, environ, start_response):
         """Shortcut for :attr:`wsgi_app`"""
         # ??? __call__ 是什么？
-        # app = Flask()
-        # app(environ, start_response)
-        # 这样使用可以调用这里的代码块
+        #   app = Flask()
+        #   app(environ, start_response)
+        #   这样使用可以调用这里的代码块
         # ??? 那么在哪里使用的呢？ -
         return self.wsgi_app(environ, start_response)
 

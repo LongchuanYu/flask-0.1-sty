@@ -301,6 +301,7 @@ class WSGIRequestHandler(BaseHTTPRequestHandler, object):
                 application_iter = None
 
         try:
+            # ??? self.server.app竟然是Flask App，是如何做到的？ -
             execute(self.server.app)
         except (_ConnectionError, socket.timeout) as e:
             self.connection_dropped(e, environ)
@@ -353,9 +354,12 @@ class WSGIRequestHandler(BaseHTTPRequestHandler, object):
         nothing happens.
         """
 
+    # ??? 非常重要！请求都要经过这里！
+    #   重写了BaseHTTPRequestHandler类方法，用serve_forever()启动服务器后，
+    #   所有的请求都会经过server的handler，BaseHTTPRequestHandler就是一种handler
     def handle_one_request(self):
         """Handle a single HTTP request."""
-        self.raw_requestline = self.rfile.readline()
+        self.raw_requestline = self.rfile.readline()  # GET / HTTP/1.1
         if not self.raw_requestline:
             self.close_connection = 1
         elif self.parse_request():
@@ -698,6 +702,7 @@ class BaseWSGIServer(HTTPServer, object):
             os.unlink(server_address)
         HTTPServer.__init__(self, server_address, handler)
 
+        # ??? 赋值给self.app目的是？ 这些变量会在哪里使用呢？ -
         self.app = app
         self.passthrough_errors = passthrough_errors
         self.shutdown_signal = False

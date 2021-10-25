@@ -1,5 +1,5 @@
 import os, sys
-from flask import Flask
+from flask import Flask, request
 
 
 SECRET_KEY = 'development key'
@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.secret_key = SECRET_KEY
 
 
-@app.route('/hallo')
+@app.route('/hello')
 def test():
     print('test')
     return 'test'

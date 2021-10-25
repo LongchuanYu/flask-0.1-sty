@@ -171,6 +171,8 @@ class LocalStack(object):
         else:
             return stack.pop()
 
+    # ??? 如何理解@property装饰器
+    # 可以理解为计算属性： 每次调用LocalStack().top时就会执行top方法里面的代码。
     @property
     def top(self):
         """The topmost item on the stack.  If the stack is empty,
