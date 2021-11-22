@@ -52,7 +52,7 @@ def release_local(local):
 
 class Local(object):
     # ??? 理解__slots__
-    # 是一个元组，包括了当前能访问到的属性，比如
+    # 是一个元组，包括了当前能且只能访问到的属性，比如
     # class Test:
     #     a = 1
     __slots__ = ("__storage__", "__ident_func__")
@@ -137,6 +137,7 @@ class LocalStack(object):
     # 这样就可以通过“类对象.方法(参数)”的方式操作属性
     # ref： http://c.biancheng.net/view/2286.html
     __ident_func__ = property(_get__ident_func__, _set__ident_func__)
+    # ??? 为什么要del呢？ -
     del _get__ident_func__, _set__ident_func__
 
     def __call__(self):
@@ -150,10 +151,14 @@ class LocalStack(object):
 
     def push(self, obj):
         """Pushes a new item to the stack"""
+        # ??? stack里面放的是啥？
+        #   [_RequestContext实例1, _RequestContext实例2, ...]
+        #   _RequestContext里面包含了flask的实例app
         rv = getattr(self._local, "stack", None)
         if rv is None:
             # ??? 就算self._local没有stack属性，这里也可以通过这种方式加上去
-            # 操作self._local.stack时会触发Local类的__setattr__方法
+            #   操作self._local.stack时会触发Local类的__setattr__方法
+            #   把stack加入storage的线程里面：storage[ident] = {stack: []}
             self._local.stack = rv = []
         rv.append(obj)
         return rv
@@ -304,6 +309,7 @@ class LocalProxy(object):
     __slots__ = ("__local", "__dict__", "__name__", "__wrapped__")
 
     def __init__(self, local, name=None):
+        # ??? _LocalProxy__local在哪里用到呢？ -
         object.__setattr__(self, "_LocalProxy__local", local)
         object.__setattr__(self, "__name__", name)
         if callable(local) and not hasattr(local, "__release_local__"):

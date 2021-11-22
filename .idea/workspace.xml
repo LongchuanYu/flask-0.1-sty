@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8449bbc-c5a8-4400-99a4-6b40d0d36485" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/flask-0.1-sty.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/flask-0.1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webResources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QA.md" beforeDir="false" afterPath="$PROJECT_DIR$/QA.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sty_httpserver.py" beforeDir="false" afterPath="$PROJECT_DIR$/sty_httpserver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/werkzeug/local.py" beforeDir="false" afterPath="$PROJECT_DIR$/werkzeug/local.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/werkzeug/serving.py" beforeDir="false" afterPath="$PROJECT_DIR$/werkzeug/serving.py" afterDir="false" />
     </list>
@@ -175,7 +172,10 @@
       <workItem from="1630894666904" duration="3126000" />
       <workItem from="1631156705770" duration="6087000" />
       <workItem from="1634800486325" duration="2498000" />
-      <workItem from="1634802990353" duration="22926000" />
+      <workItem from="1634802990353" duration="42668000" />
+      <workItem from="1635924901415" duration="1107000" />
+      <workItem from="1635985973128" duration="1046000" />
+      <workItem from="1637540118270" duration="4030000" />
     </task>
     <servers />
   </component>
@@ -192,33 +192,13 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/flask.py</url>
-          <line>83</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/flask.py</url>
-          <line>84</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/flask.py</url>
-          <line>85</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/flask_0_1$flask_0_1.coverage" NAME="flask-0.1 Coverage Results" MODIFIED="1630720105734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/flask_0_1$serving.coverage" NAME="serving Coverage Results" MODIFIED="1630656261452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/werkzeug" />
     <SUITE FILE_PATH="coverage/flask_0_1_sty$flask_0_1.coverage" NAME="flask-0.1 Coverage Results" MODIFIED="1634802891998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/flask_0_1$test.coverage" NAME="test Coverage Results" MODIFIED="1630656945536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/flask_0_1_sty$flask_0_1_sty.coverage" NAME="flask-0.1-sty Coverage Results" MODIFIED="1634897425272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/flask_0_1_sty$flask_0_1_sty.coverage" NAME="flask-0.1-sty Coverage Results" MODIFIED="1637544377222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

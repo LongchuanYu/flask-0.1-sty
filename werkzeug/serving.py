@@ -301,7 +301,7 @@ class WSGIRequestHandler(BaseHTTPRequestHandler, object):
                 application_iter = None
 
         try:
-            # ??? self.server.app竟然是Flask App，是如何做到的？ -
+            # ??? self.server.app竟然是Flask App实例，是如何做到的？ -
             execute(self.server.app)
         except (_ConnectionError, socket.timeout) as e:
             self.connection_dropped(e, environ)

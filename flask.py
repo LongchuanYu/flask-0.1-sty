@@ -86,12 +86,12 @@ class _RequestContext(object):
         self.flashes = None
 
     # ??? __enter__ 和 __exit__的作用
-    # 用于with语句，比如
-    # def test():
-    #    return _RequestContext()
-    # with test() as result: xxx
-    # 将会先调用__enter__方法， 把结果赋值给result
-    # with后面的代码快(xxx)执行完毕后调用__exit__方法
+    #   用于with语句，比如
+    #   def test():
+    #      return _RequestContext()
+    #   with test() as result: xxx
+    #   将会先调用__enter__方法， 把结果赋值给result
+    #   with后面的代码快(xxx)执行完毕后调用__exit__方法
     def __enter__(self):
         _request_ctx_stack.push(self)
 
@@ -637,7 +637,6 @@ class Flask(object):
                                a list of headers and an optional
                                exception context to start the response
         """
-        print(environ)
         with self.request_context(environ):
             # ??? preprocess_request 会先去处理@app.before_request装饰的函数
             rv = self.preprocess_request()
@@ -675,7 +674,9 @@ class Flask(object):
         #   app = Flask()
         #   app(environ, start_response)
         #   这样使用可以调用这里的代码块
-        # ??? 那么在哪里使用的呢？ -
+        # ??? 那么在哪里使用的呢？
+        #   werkzeug -> serving.py -> handle_one_request() -> run_wsgi() -> execute()处使用，
+        #   每次的请求都会经过如上的流程
         return self.wsgi_app(environ, start_response)
 
 

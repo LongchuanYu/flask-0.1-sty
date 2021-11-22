@@ -21,7 +21,7 @@ class WSGIRequestHandler(BaseHTTPRequestHandler, object):
 
     def send_response(self, code, message=None):
         """Send the response header and log the response code."""
-        self.log_request(code)
+        print('here...')
         if message is None:
             message = code in self.responses and self.responses[code][0] or ""
         if self.request_version != "HTTP/0.9":
