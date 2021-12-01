@@ -334,7 +334,7 @@ class Flask(object):
         """
         from werkzeug import run_simple
 
-        # ??? 在调用run的时候可以传入参数debut, IDE会有参数提示
+        # ??? 在调用run的时候可以传入参数debug, IDE会有参数提示
         if 'debug' in options:
             self.debug = options.pop('debug')
         options.setdefault('use_reloader', self.debug)

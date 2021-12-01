@@ -52,13 +52,16 @@ from .urls import url_parse
 from .urls import url_unquote
 
 try:
-    import socketserver
-    from http.server import BaseHTTPRequestHandler
-    from http.server import HTTPServer
+    from my_http_server.server import SocketServer as socketserver
+    from my_http_server.server.BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+    # import socketserver
+    # from http.server import BaseHTTPRequestHandler
+    # from http.server import HTTPServer
 except ImportError:
-    import SocketServer as socketserver
-    from BaseHTTPServer import HTTPServer
-    from BaseHTTPServer import BaseHTTPRequestHandler
+    pass
+    # import SocketServer as socketserver
+    # from BaseHTTPServer import HTTPServer
+    # from BaseHTTPServer import BaseHTTPRequestHandler
 
 try:
     import ssl
@@ -301,7 +304,13 @@ class WSGIRequestHandler(BaseHTTPRequestHandler, object):
                 application_iter = None
 
         try:
-            # ??? self.server.app竟然是Flask App实例，是如何做到的？ -
+            # ??? self.server.app竟然是Flask App实例，是如何做到的？
+            #   每次请求过来，都会把BaseWSGIServer实例对象带给handler的self.server
+            #   核心如下：
+            #    server_forever() -> self.RequestHandlerClass(request, client_address, self)
+            #   参数self，就是BaseWSGIServer实例对象
+            #   BaseWSGIServer里面有一句很关键： self.app = app
+            #   这样就把flask app包在BaseWSGIServer里面带给handler了
             execute(self.server.app)
         except (_ConnectionError, socket.timeout) as e:
             self.connection_dropped(e, environ)
@@ -702,7 +711,10 @@ class BaseWSGIServer(HTTPServer, object):
             os.unlink(server_address)
         HTTPServer.__init__(self, server_address, handler)
 
-        # ??? 赋值给self.app目的是？ 这些变量会在哪里使用呢？ -
+        # ??? 赋值给self.app目的是？ self.app会在哪里使用呢？ -
+        #   这里其实是将flask app包在BaseWSGIServer类里面
+        # ??? app从哪里传过来的？
+        #   flask里面run() -> run_simple(host, port, self, **options), 参数self就是这里的app
         self.app = app
         self.passthrough_errors = passthrough_errors
         self.shutdown_signal = False
