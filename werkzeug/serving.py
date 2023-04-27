@@ -52,16 +52,16 @@ from .urls import url_parse
 from .urls import url_unquote
 
 try:
-    from my_http_server.server import SocketServer as socketserver
-    from my_http_server.server.BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
-    # import socketserver
-    # from http.server import BaseHTTPRequestHandler
-    # from http.server import HTTPServer
+    # from my_http_server.server import SocketServer as socketserver
+    # from my_http_server.server.BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+    import socketserver
+    from http.server import BaseHTTPRequestHandler
+    from http.server import HTTPServer
 except ImportError:
-    pass
-    # import SocketServer as socketserver
-    # from BaseHTTPServer import HTTPServer
-    # from BaseHTTPServer import BaseHTTPRequestHandler
+    # pass
+    import SocketServer as socketserver
+    from BaseHTTPServer import HTTPServer
+    from BaseHTTPServer import BaseHTTPRequestHandler
 
 try:
     import ssl
@@ -711,7 +711,7 @@ class BaseWSGIServer(HTTPServer, object):
             os.unlink(server_address)
         HTTPServer.__init__(self, server_address, handler)
 
-        # ??? 赋值给self.app目的是？ self.app会在哪里使用呢？ -
+        # ??? 赋值给self.app目的是？ self.app会在哪里使用呢？
         #   这里其实是将flask app包在BaseWSGIServer类里面
         # ??? app从哪里传过来的？
         #   flask里面run() -> run_simple(host, port, self, **options), 参数self就是这里的app
@@ -749,6 +749,7 @@ class BaseWSGIServer(HTTPServer, object):
     def serve_forever(self):
         self.shutdown_signal = False
         try:
+            # ??? 为什么要用父类的serve_forever()方法呢？
             HTTPServer.serve_forever(self)
         except KeyboardInterrupt:
             pass
